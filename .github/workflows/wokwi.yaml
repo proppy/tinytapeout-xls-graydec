@@ -2,7 +2,7 @@ name: wokwi
 # either manually started, or on a schedule
 on: [ push, workflow_dispatch ]
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 jobs:
@@ -55,6 +55,13 @@ jobs:
         with:
           path: src
           key: ${{ runner.os }}-rtl-${{ hashFiles('src/user_module.v') }}
+      - name: commit generated rtl
+        run: |
+          git config --local user.name "tinybot"
+          git config --local user.email "bot@tinytapeout.com"
+          git add src/user_module.v
+          git commit -m "src: generated user module [skip ci]"
+          git push origin main
 
   gds:
     needs: xls
