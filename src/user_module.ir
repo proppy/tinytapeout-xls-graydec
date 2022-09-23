@@ -1,0 +1,19 @@
+package user_module
+
+file_number 0 "fake_file.x"
+
+fn __user_module__graydec(g: bits[8]) -> bits[8] {
+  literal.2: bits[3] = literal(value=4, id=2, pos=[(0,5,20)])
+  shrl.3: bits[8] = shrl(g, literal.2, id=3, pos=[(0,5,17)])
+  g__1: bits[8] = xor(g, shrl.3, id=4, pos=[(0,5,13)])
+  literal.5: bits[2] = literal(value=2, id=5, pos=[(0,6,20)])
+  shrl.6: bits[8] = shrl(g__1, literal.5, id=6, pos=[(0,6,17)])
+  g__2: bits[8] = xor(g__1, shrl.6, id=7, pos=[(0,6,13)])
+  literal.8: bits[1] = literal(value=1, id=8, pos=[(0,7,20)])
+  shrl.9: bits[8] = shrl(g__2, literal.8, id=9, pos=[(0,7,17)])
+  ret g__3: bits[8] = xor(g__2, shrl.9, id=10, pos=[(0,7,13)])
+}
+
+top fn __user_module__user_module(io_in: bits[8]) -> bits[8] {
+  ret invoke.12: bits[8] = invoke(io_in, to_apply=__user_module__graydec, id=12, pos=[(0,22,9)])
+}

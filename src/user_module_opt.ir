@@ -1,0 +1,18 @@
+package user_module
+
+file_number 0 "fake_file.x"
+
+top fn __user_module__user_module(io_in: bits[8]) -> bits[8] {
+  literal.22: bits[4] = literal(value=0, id=22, pos=[(0,5,17)])
+  bit_slice.23: bits[4] = bit_slice(io_in, start=4, width=4, id=23, pos=[(0,5,17)])
+  concat.24: bits[8] = concat(literal.22, bit_slice.23, id=24, pos=[(0,5,17)])
+  io_in__1: bits[8] = xor(io_in, concat.24, id=25, pos=[(0,5,13)])
+  literal.26: bits[2] = literal(value=0, id=26, pos=[(0,6,17)])
+  bit_slice.27: bits[6] = bit_slice(io_in__1, start=2, width=6, id=27, pos=[(0,6,17)])
+  concat.28: bits[8] = concat(literal.26, bit_slice.27, id=28, pos=[(0,6,17)])
+  io_in__2: bits[8] = xor(io_in__1, concat.28, id=29, pos=[(0,6,13)])
+  literal.30: bits[1] = literal(value=0, id=30, pos=[(0,7,17)])
+  bit_slice.31: bits[7] = bit_slice(io_in__2, start=1, width=7, id=31, pos=[(0,7,17)])
+  concat.32: bits[8] = concat(literal.30, bit_slice.31, id=32, pos=[(0,7,17)])
+  ret io_in__3: bits[8] = xor(io_in__2, concat.32, id=33, pos=[(0,7,13)])
+}
